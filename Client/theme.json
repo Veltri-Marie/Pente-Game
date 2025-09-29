@@ -1,23 +1,217 @@
- {
+{
     "theme": {
+        "defaults": {
+            "font": {
+                "name": "System",
+                "size": 16
+            }
+        },
         "element_styles": {
-            "lbl": {
-                "font_size": 18,
-                "text_colour": "#FFFFFF"
+            "#main_title": {
+                "font": {
+                    "name": "System",
+                    "size": 48,
+                    "bold": true
+                },
+                "text_colour": "#FFD700",
+                "text_shadow": {
+                    "size": 2,
+                    "colour": "#000000",
+                    "offset": [2, 2]
+                }
             },
-            "text_entry": {
-                "border_width": 2,
-                "border_colour": "#1E90FF"
+            "#subtitle": {
+                "font": {
+                    "name": "System", 
+                    "size": 20
+                },
+                "text_colour": "#E6E6FA"
+            },
+            "#lbl": {
+                "font": {
+                    "name": "System",
+                    "size": 18,
+                    "bold": true
+                },
+                "text_colour": "#FFFFFF",
+                "text_shadow": {
+                    "size": 1,
+                    "colour": "#000000",
+                    "offset": [1, 1]
+                }
+            },
+            "#text_entry": {
+                "border_width": 3,
+                "border_colour": "#4169E1",
+                "background_colour": "#1C1C1C",
+                "text_colour": "#FFFFFF",
+                "border_colour_focused": "#FFD700",
+                "background_colour_focused": "#2A2A2A",
+                "font": {
+                    "size": 16
+                }
             },
             "#login_btn": {
-                "font_size": 18,
-                "background_colour": "#32CD32",
-                "text_colour": "#FFFFFF"
+                "font": {
+                    "name": "System",
+                    "size": 18,
+                    "bold": true
+                },
+                "background_colour": "#228B22",
+                "background_colour_hovered": "#32CD32",
+                "background_colour_active": "#006400",
+                "text_colour": "#FFFFFF",
+                "border_width": 2,
+                "border_colour": "#FFD700",
+                "border_radius": 10
             },
-            "error_label": {
-                "font_size": 22,
-                "text_colour": "#FF0000"
+            "#primary_btn": {
+                "font": {
+                    "name": "System",
+                    "size": 16,
+                    "bold": true
+                },
+                "background_colour": "#4169E1",
+                "background_colour_hovered": "#5B7FF0",
+                "background_colour_active": "#2F4FBF",
+                "text_colour": "#FFFFFF",
+                "border_width": 2,
+                "border_colour": "#FFD700",
+                "border_radius": 8
+            },
+            "#secondary_btn": {
+                "font": {
+                    "name": "System",
+                    "size": 14,
+                    "bold": false
+                },
+                "background_colour": "#708090",
+                "background_colour_hovered": "#8A9BAE",
+                "background_colour_active": "#556B7D",
+                "text_colour": "#FFFFFF",
+                "border_width": 1,
+                "border_colour": "#C0C0C0",
+                "border_radius": 5
+            },
+            "#danger_btn": {
+                "font": {
+                    "name": "System",
+                    "size": 16,
+                    "bold": true
+                },
+                "background_colour": "#DC143C",
+                "background_colour_hovered": "#FF1744",
+                "background_colour_active": "#B22222",
+                "text_colour": "#FFFFFF",
+                "border_width": 2,
+                "border_colour": "#FFD700",
+                "border_radius": 8
+            },
+            "#game_btn": {
+                "font": {
+                    "name": "System",
+                    "size": 14
+                },
+                "background_colour": "#2F2F2F",
+                "background_colour_hovered": "#404040",
+                "background_colour_active": "#1A1A1A",
+                "text_colour": "#FFFFFF",
+                "border_width": 1,
+                "border_colour": "#4169E1",
+                "border_radius": 5
+            },
+            "#error_label": {
+                "font": {
+                    "name": "System",
+                    "size": 16,
+                    "bold": true
+                },
+                "text_colour": "#FF4444",
+                "text_shadow": {
+                    "size": 1,
+                    "colour": "#000000",
+                    "offset": [1, 1]
+                }
+            },
+            "#success_label": {
+                "font": {
+                    "name": "System",
+                    "size": 16,
+                    "bold": true
+                },
+                "text_colour": "#00FF44",
+                "text_shadow": {
+                    "size": 1,
+                    "colour": "#000000",
+                    "offset": [1, 1]
+                }
+            },
+            "#status_label": {
+                "font": {
+                    "name": "System",
+                    "size": 20,
+                    "bold": true
+                },
+                "text_colour": "#FFD700",
+                "text_shadow": {
+                    "size": 2,
+                    "colour": "#000000",
+                    "offset": [2, 2]
+                }
+            },
+            "#pending_label": {
+                "font": {
+                    "name": "System",
+                    "size": 18
+                },
+                "text_colour": "#87CEEB"
+            },
+            "#result_label": {
+                "font": {
+                    "name": "System",
+                    "size": 36,
+                    "bold": true
+                },
+                "text_colour": "#FFD700",
+                "text_shadow": {
+                    "size": 3,
+                    "colour": "#000000",
+                    "offset": [3, 3]
+                }
+            },
+            "#win_label": {
+                "font": {
+                    "name": "System",
+                    "size": 36,
+                    "bold": true
+                },
+                "text_colour": "#00FF00",
+                "text_shadow": {
+                    "size": 3,
+                    "colour": "#000000",
+                    "offset": [3, 3]
+                }
+            },
+            "#lose_label": {
+                "font": {
+                    "name": "System",
+                    "size": 36,
+                    "bold": true
+                },
+                "text_colour": "#FF0000",
+                "text_shadow": {
+                    "size": 3,
+                    "colour": "#000000",
+                    "offset": [3, 3]
+                }
+            },
+            "#message_label": {
+                "font": {
+                    "name": "System",
+                    "size": 14
+                },
+                "text_colour": "#E6E6FA"
             }
         }
     }
- }
+}

@@ -6,7 +6,7 @@
 /*              CONFIGURATION                */
 /*********************************************/
 
-#define PORT 55555
+#define PORT 55556
 #define MAX_CLIENTS 10
 #define BUFFER_SIZE 4096
 #define AUTH_MAX_LENGTH 16

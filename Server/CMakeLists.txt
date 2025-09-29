@@ -16,4 +16,8 @@ add_executable(Server main.c
         headers/lobby.h
         headers/game.h
         headers/states.h
-        main.c)
+        main.c
+        lobby.c
+        headers/config.h
+        headers/lobby.h
+        headers/lobby.h)

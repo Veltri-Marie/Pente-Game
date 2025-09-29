@@ -1,5 +1,6 @@
 from game import *
 from gui import *
+from sounds import sound_manager
 
 def handle_authentication_events(gui_manager, user):
     running = True
@@ -17,6 +18,7 @@ def handle_authentication_events(gui_manager, user):
             gui_manager.manager.process_events(event)
 
             if event.type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == login_btn:
+                sound_manager.play_sound('click')
                 username = username_input.get_text()
                 password = pw_input.get_text()
 
@@ -61,6 +63,7 @@ def handle_lobby_events(gui_manager, user):
             gui_manager.manager.process_events(event)
 
             if event.type == pygame_gui.UI_BUTTON_PRESSED:
+                sound_manager.play_sound('click')
                 if event.ui_element == create_btn:
                     try:
                         status = create_game(user)
@@ -151,6 +154,7 @@ def handle_inactive_game_events(gui_manager, user):
                 gui_manager.manager.process_events(event)
 
                 if event.type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == lobby_btn:
+                    sound_manager.play_sound('click')
                     status = quit_inactive_game(user)
 
                     if status == STATUS_QUIT_GAME:
@@ -205,7 +209,7 @@ def handle_playing_state(gui_manager, user):
                     status, message = user.client_socket.receive_packet()
                     if status == STATUS_ABANDON_GAME:
                         print(f"[DEBUG] Abandon confirmed: {message}")
-                        gui_manager.show_end_screen(is_winner=False, message="You abandoned the game.")
+                        gui_manager.show_end_screen(is_winner=False, message="Vous avez abandonne la partie.")
                         return True
 
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -214,6 +218,7 @@ def handle_playing_state(gui_manager, user):
                 grid_y = (mouse_y - grid_offset_y) // cell_size
 
                 if 0 <= grid_x < 19 and 0 <= grid_y < 19 and board_state[grid_y][grid_x] == 0:
+                    sound_manager.play_sound('place_stone')
                     move_pack = bytes([PKT_MOVE]) + struct.pack("!BB", grid_y, grid_x)
                     print(f"[DEBUG] Sent move: x={grid_x}, y={grid_y}")
                     user.client_socket.send_packet(move_pack)
@@ -229,6 +234,7 @@ def handle_playing_state(gui_manager, user):
             user.current_state = WAITING_STATE
             return True
         elif status == STATUS_INVALID_MOVE:
+            sound_manager.play_sound('error')
             gui_manager.show_board(board_state, cell_size, status_message="Invalid move. Try again!")
         elif status in [STATUS_VICTORY, STATUS_LOST]:
             is_winner = (status == STATUS_VICTORY)
@@ -242,7 +248,14 @@ def handle_playing_state(gui_manager, user):
                         return False
                     gui_manager.manager.process_events(event)
                     if event.type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == return_btn:
+                        sound_manager.play_sound('click')
                         waiting = False
+
+                # Rendu de l'écran de fin de partie
+                gui_manager.manager.update(time_delta)
+                gui_manager.screen.blit(gui_manager.background, (0, 0))
+                gui_manager.manager.draw_ui(gui_manager.screen)
+                pygame.display.update()
 
             gui_manager.manager.clear_and_reset()
             user.current_state = LOBBY_STATE
@@ -290,7 +303,7 @@ def handle_waiting_state(gui_manager, user):
         elif status in [STATUS_VICTORY, STATUS_LOST, STATUS_ABANDON_GAME]:
             is_winner = (status == STATUS_VICTORY)
             if status == STATUS_ABANDON_GAME:
-                message = "Your opponent abandoned the game. You win!"
+                message = "Votre adversaire a abandonne. Vous gagnez !"
                 is_winner = True
 
             return_btn = gui_manager.show_end_screen(is_winner=is_winner, message=message)
@@ -304,6 +317,7 @@ def handle_waiting_state(gui_manager, user):
                         return False
                     gui_manager.manager.process_events(event)
                     if event.type == pygame_gui.UI_BUTTON_PRESSED and event.ui_element == return_btn:
+                        sound_manager.play_sound('click')
                         waiting = False
 
                 gui_manager.manager.update(time_delta)

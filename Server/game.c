@@ -35,12 +35,12 @@ void analyze_move(client_t *client, int x, int y) {
         char defeat_message[BUFFER_SIZE];
 
         snprintf(victory_message, sizeof(victory_message),
-                 "You won! Victories: %d, Defeats: %d, Score: %d, Games played: %d",
+                 "Victoire ! Victoires: %d | Defaites: %d | Score: %d | Parties: %d",
                  client->victories + 1, client->defeats, client->score + 3, client->games_played);
 
         client_t *opponent = (client == game->player1) ? game->player2 : game->player1;
         snprintf(defeat_message, sizeof(defeat_message),
-                 "You lost! Victories: %d, Defeats: %d, Score: %d, Games played: %d",
+                 "Defaite ! Victoires: %d | Defaites: %d | Score: %d | Parties: %d",
                  opponent->victories, opponent->defeats + 1, opponent->score, opponent->games_played);
 
         sendpacket(client, STATUS_VICTORY, victory_message);
@@ -172,10 +172,10 @@ void abandon(client_t *client, int game_id) {
     update_player_stats(winner, loser);
     char message[BUFFER_SIZE];
 
-    snprintf(message, sizeof(message), "You won. Victories: %d, Defeats: %d, Score: %d, Games played: %d",
+    snprintf(message, sizeof(message), "Victoire par abandon ! Victoires: %d | Defaites: %d | Score: %d | Parties: %d",
              winner->victories, winner->defeats, winner->score, winner->games_played);
     sendpacket(winner, STATUS_VICTORY, message);
-    snprintf(message, sizeof(message), "You abandoned the game. Victories: %d, Defeats: %d, Score: %d, Games played: %d",
+    snprintf(message, sizeof(message), "Vous avez abandonne. Victoires: %d | Defaites: %d | Score: %d | Parties: %d",
              loser->victories, loser->defeats, loser->score, loser->games_played);
     sendpacket(loser, STATUS_ABANDON_GAME, message);
     printf("[DEBUG] Client %s abandoned the game ID %d. Winner is %s.\n", loser->username, game_id, winner->username);

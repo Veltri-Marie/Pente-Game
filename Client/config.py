@@ -3,7 +3,7 @@
 # ****************************************
 
 SERVER_HOST = '127.0.0.1'
-SERVER_PORT = 55555
+SERVER_PORT = 55556
 BUFFER_SIZE = 4096
 AUTH_MAX_LENGTH = 16
 

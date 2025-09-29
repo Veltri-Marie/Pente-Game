@@ -1,8 +1,17 @@
 from events import *
 
 def states_loop(user, gui_manager):
+    clock = pygame.time.Clock()
+    
     while True:
         try:
+            # Calcul du temps écoulé pour les animations
+            dt = clock.tick(60) / 1000.0  # 60 FPS, dt en secondes
+            gui_manager.update_animations(dt)
+            
+            # Dessiner le fond animé
+            gui_manager.draw_animated_background()
+            
             if user.current_state == INITIAL_STATE:
                 if not handle_authentication_events(gui_manager, user):
                     print("[DEBUG] Exiting from INITIAL_STATE.")
@@ -33,6 +42,7 @@ def states_loop(user, gui_manager):
             else:
                 print(f"[ERROR]: Unknown state: {user.current_state}. Exiting...")
                 return  # Sort du programme
+                
         except Exception as e:
             import traceback
             traceback.print_exc()
